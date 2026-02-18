@@ -130,14 +130,50 @@
             font-size: 0.9rem;
             color: #9e9ea4;
         }
+
+        /* LOGO URCA */
+        .urca-logo-link {
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            z-index: 100;
+            display: block;
+        }
+
+        .urca-logo-link:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        .urca-logo-img {
+            height: 90px;
+            /* Adjusted size */
+            width: auto;
+        }
+
+        @media (max-width: 600px) {
+            .urca-logo-link {
+                position: static;
+                display: block;
+                margin: 20px auto;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- LOGO SCIENCEDIRECT -->
-    <a href="https://www.sciencedirect.com/" target="_blank" class="sd-logo-link" title="Aller sur ScienceDirect">
-        <img src="ScienceDirect.banner-removebg-preview.png" alt="ScienceDirect Logo" class="sd-logo-img">
+    <!-- LOGO SCIENCEDIRECT (Top Left) -->
+    <a href="https://www-sciencedirect-com.urca.idm.oclc.org/" class="sd-logo-link" target="_blank"
+        title="Accéder à ScienceDirect via l'URCA">
+        <img src="ScienceDirect.banner-removebg-preview.png" alt="Logo ScienceDirect" class="sd-logo-img">
+    </a>
+
+    <!-- LOGO URCA (Top Right) -->
+    <a href="https://www.iut-rcc.fr" class="urca-logo-link" target="_blank" title="Site de l'IUT de Reims">
+        <img src="Urca-removebg-preview.png" alt="Logo URCA" class="urca-logo-img">
     </a>
 
     <div class="container">
