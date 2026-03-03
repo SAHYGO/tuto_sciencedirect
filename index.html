@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutoriel ScienceDirect - Choix OS</title>
+    <title>Tutoriel ScienceDirect — BU IUT Reims</title>
+    <meta name="description" content="Apprenez à exporter vos références depuis ScienceDirect vers Zotero grâce à ce tutoriel proposé par la Bibliothèque Universitaire de l'IUT de Reims.">
 
     <!-- Police Apple-like -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
         /* RESET */
@@ -15,148 +16,164 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         :root {
-            --accent-color: #F26522;
-            /* ScienceDirect Orange */
+            --accent:       #E8601A;   /* orange ScienceDirect légèrement tempéré */
+            --accent-soft:  rgba(232, 96, 26, 0.10);
+            --accent-glow:  rgba(232, 96, 26, 0.30);
+
+            /* Palette blanc chaud */
+            --ivory:   #FFFFF0;        /* Ivory */
+            --sand:    #FAF6F1;        /* Sand White */
+            --linen:   #FDF8F3;        /* Linen */
+            --warm-50: #F7F2EC;        /* warm white dégradé */
+
+            --text-dark:   #1C1C1E;
+            --text-mid:    #6C6C70;
+            --text-light:  #A0A0A5;
         }
 
-        /* BACKGROUND */
+        /* BACKGROUND — dégradé ivoire → sable */
         body {
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(180deg, #f5f5f7, #ffffff);
+            background: linear-gradient(160deg, var(--ivory) 0%, var(--sand) 50%, var(--linen) 100%);
         }
 
         /* CONTAINER */
         .container {
             text-align: center;
-            max-width: 800px;
-            padding: 40px;
+            max-width: 700px;
+            padding: 40px 28px 120px; /* padding bottom pour laisser place au footer fixé */
+        }
+
+        /* BADGE */
+        .badge {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: var(--accent-soft);
+            border: 1px solid rgba(232, 96, 26, 0.18);
+            border-radius: 100px;
+            padding: 5px 16px;
+            margin-bottom: 32px;
         }
 
         /* TITLE */
         h1 {
-            font-size: 2.5rem;
+            font-size: clamp(2.2rem, 5.5vw, 3.4rem);
             font-weight: 600;
-            color: #1d1d1f;
-            margin-bottom: 10px;
+            color: var(--text-dark);
+            line-height: 1.12;
+            letter-spacing: -0.03em;
+            margin-bottom: 18px;
         }
 
-        p {
-            color: #6e6e73;
-            margin-bottom: 40px;
-            font-size: 1.1rem;
+        h1 span {
+            color: var(--accent);
         }
 
-        /* OS GRID */
-        .os-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+        /* SUBTITLE */
+        .subtitle {
+            color: var(--text-mid);
+            font-size: 1.05rem;
+            font-weight: 400;
+            line-height: 1.65;
+            margin-bottom: 52px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* CARD */
-        .os-card {
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 40px 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        /* CTA BUTTON */
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            background: var(--accent);
+            color: #ffffff;
             text-decoration: none;
-            color: #1d1d1f;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 20px 56px;
+            border-radius: 100px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.2s ease;
+            box-shadow: 0 6px 28px var(--accent-glow);
+            letter-spacing: -0.01em;
         }
 
-        .os-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(242, 101, 34, 0.15);
-            /* Orange shadow */
-            border: 1px solid var(--accent-color);
+        .cta-btn svg {
+            flex-shrink: 0;
+            transition: transform 0.25s ease;
         }
 
-        /* LOGO SCIENCEDIRECT */
+        .cta-btn:hover {
+            background: #C94F10;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px var(--accent-glow);
+        }
+
+        .cta-btn:hover svg {
+            transform: translateX(5px);
+        }
+
+        .cta-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 14px var(--accent-glow);
+        }
+
+        /* LOGOS */
         .sd-logo-link {
             position: absolute;
             top: 10px;
-            /* Closer to top */
             left: 10px;
-            /* Closer to left */
             transition: transform 0.2s ease, opacity 0.2s ease;
             z-index: 100;
-            display: block;
-            /* Ensure link wraps image properly */
         }
+        .sd-logo-link:hover { transform: scale(1.05); opacity: 0.9; }
+        .sd-logo-img { height: 130px; width: auto; }
 
-        .sd-logo-link:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
-        }
-
-        .sd-logo-img {
-            height: 140px;
-            /* Slightly larger (was 120px) */
-            width: auto;
-        }
-
-        /* RESPONSIVE LOGO adjustment */
-        @media (max-width: 600px) {
-            .sd-logo-link {
-                position: static;
-                display: block;
-                margin: 0 auto 20px auto;
-                text-align: center;
-            }
-        }
-
-        /* ICON */
-        .os-icon {
-            font-size: 70px;
-            margin-bottom: 20px;
-        }
-
-        /* LABEL */
-        .os-label {
-            font-size: 1.3rem;
-            font-weight: 500;
-        }
-
-        /* FOOTER */
-        footer {
-            margin-top: 60px;
-            font-size: 0.9rem;
-            color: #9e9ea4;
-        }
-
-        /* LOGO URCA */
         .urca-logo-link {
             position: absolute;
-            top: 30px;
+            top: 28px;
             right: 20px;
             transition: transform 0.2s ease, opacity 0.2s ease;
             z-index: 100;
-            display: block;
+        }
+        .urca-logo-link:hover { transform: scale(1.05); opacity: 0.9; }
+        .urca-logo-img { height: 86px; width: auto; }
+
+        /* FOOTER — fixé en bas */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 13px 24px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-align: center;
+            background: rgba(253, 248, 243, 0.88); /* linen semi-transparent */
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-top: 1px solid rgba(0,0,0,0.07);
         }
 
-        .urca-logo-link:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
-        }
-
-        .urca-logo-img {
-            height: 90px;
-            /* Adjusted size */
-            width: auto;
-        }
-
+        /* RESPONSIVE */
         @media (max-width: 600px) {
+            .sd-logo-link,
             .urca-logo-link {
                 position: static;
                 display: block;
-                margin: 20px auto;
+                margin: 0 auto 16px auto;
                 text-align: center;
             }
         }
@@ -178,37 +195,28 @@
 
     <div class="container">
 
-        <h1>Tutoriel ScienceDirect</h1>
-        <p>Choisissez votre système d’exploitation pour commencer le tutoriel</p>
+        <div class="badge">Bibliothèque Universitaire — IUT de Reims</div>
 
-        <div class="os-grid">
+        <h1>Explorez<br><span>ScienceDirect</span></h1>
 
-            <!-- MAC -->
-            <a href="macos.html" class="os-card">
-                <img class="os-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg">
-                <div class="os-label">macOS</div>
-            </a>
+        <p class="subtitle">
+            Apprenez à rechercher, sélectionner et exporter vos références bibliographiques
+            vers Zotero, étape par étape.
+        </p>
 
-            <!-- WINDOWS -->
-            <a href="windows.html" class="os-card">
-                <img class="os-logo"
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg">
-                <div class="os-label">Windows</div>
-            </a>
-
-            <!-- LINUX -->
-            <a href="linux.html" class="os-card">
-                <img class="os-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg">
-                <div class="os-label">Linux</div>
-            </a>
-
-        </div>
-
-        <footer>
-            Bibliothèque Universitaire — Tutoriel Export ScienceDirect
-        </footer>
+        <a href="windows.html" class="cta-btn">
+            Découvrir le tutoriel
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.5 9H14.5M14.5 9L10 4.5M14.5 9L10 13.5" stroke="white" stroke-width="1.7"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
 
     </div>
+
+    <footer>
+        Bibliothèque Universitaire — Tutoriel Export ScienceDirect
+    </footer>
 
 </body>
 
